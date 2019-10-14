@@ -3,7 +3,7 @@
 The goal of this game is to light up every tile on the board. This must be done by not only rotating every tile to connect accross the whole board, but also move the energy source (star) to the location where it can reach all tiles. 
 When starting the game, all tiles are randomly rotated in place.
 
-![Initial board](Images/Initial.png =100x100)
+![Initial board](Images/Initial.png | width=100)
 
 Clicking on any tile changes its orientation, possibly connecting it to a neighboring tile. 
 
