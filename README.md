@@ -1,9 +1,9 @@
 # LightEmAll
 
-![Initial board](Initial.png)
+![Initial board](Images/Initial.png)
 
-![Rotation board](Rotation.png)
+![Rotation board](Images/Rotation.png)
 
-![Radius board](Radius.png)
+![Radius board](Images/Radius.png)
 
-![Final board](Final.png)
+![Final board](Images/Final.png)
