@@ -1,0 +1,162 @@
+04/15/2019:
+4:03:14 PM
+NEW FILES:
+    - changelog.txt
+// NOTE: Created changelog to track changes to project in a more organized manner
+// TODO: Attempt to salvage methods and classes from two obsolete versions:
+    - GamePiece.java
+    - LightEmAll.java
+
+04/16/2019:
+8:17:26 PM
+Successfully merged functioning parts of both files.
+// NOTE: Classes were separated into different files for convenience
+
+NEW FILES:
+    - LightEmAll.java
+    - GamePiece.java
+    - Edge.java
+    - ExamplesLightEmAll.java
+
+The following methods have been successfully added from previous versions:
+1. LightEmAll methods:
+    - initializeGame(): [NOW init()] generates the board and calls methods to start game
+        NOTE: methods called are:
+            connectNeighbors()
+            addWires()
+            updateConnections()
+            findRadius()
+            GamePiece.powerUp()
+    - makeScene(): to draw a LightEmAll game in the canvas
+    - onMouseClicked(): to interact with the game using a mouse
+    - onKeyEvent(): to interact with the game using a keyboard
+    - connectNeighbors(): to connect all GamePiece objects to their neighbors
+    - addWires(): [NOW manualWires()] Generates hard-coded wires in the game board
+    - wireAlgorithm(): [NOW fractalWires()] Generates fractal-like wires in the game board
+    - updateConnections(): updates connections between pieces after an operation
+    - powerDown(): Shut down the electricity for safety before an operation
+    - findRadius(): to find the radius of the board using BFS
+    - findDeepest(): helper to find farthest GamePiece and its distance from the start point
+    - findDeeper(): helper to find farthest GamePiece when multiple paths are available
+
+2. GamePiece methods:
+    - drawGamePiece(): [NOW draw()] to draw a GamePiece in the canvas
+    - addNeighbor(): to add a given neighboring GamePiece to neighborHash and neighborList
+    - rotate(): to rotate this GamePiece clockwise or counter-clockwise
+    - updateConnections(): updates connections between this node and its neighbors
+    - updatePowerStation(): updates the boolean powerStation
+    - isConnected(): to check if this GamePiece is directly connected to another GamePiece
+    - powerUp(): to turn the power on using BFS
+
+3. ExamplesLightEmAll:
+    - initLightEmAll(): to initialize instances and examples of LightEmAll and GamePieces
+    - testBigBang(): to test the graphical interface for a LightEmAll game
+
+CHANGES to functions:
+- Renamed initializeGame() to init().
+- Renamed addWires() to manualWires().
+- Renamed wireAlgorithm() to fractalWires().
+- Renamed updateWays() to updateConnections().
+- Renamed drawGamePiece() to draw().
+- Added String mode parameter to LightThemAll and its constructor.
+- Added clockwise rotation to onMouseClicked() & rotate().
+- Fixed findDeepest() & findDeeper() to only check for connected GamePieces (not all neighbors).
+- Fixed logic for GamePiece.draw() & powerUp() to correctly draw light up wires.
+
+The following methods have been removed:
+    - nodeFurthestFrom(): A version of powerUp() using a Queue instead of BFS to find depth
+    - initializeGame(): Renamed to init()
+    - addWires(): Renamed to manualWires()
+    - wireAlgorithm(): Renamed to fractalWires()
+    - updateWays(): Renamed to updateConnections()
+    - drawGamePiece(): Renamed to draw()
+    - numberConnected(): returns number of pieces connected to this one [Not used]
+
+
+The following new methods have been added:
+1. LightEmAll methods:
+    - addWires(): adds wires according to a specified game mode
+        NOTE: Possible game modes are:
+            "MANUAL"
+            "FRACTALS"
+            "RANDOM" // TODO: Implement Kruskal's algorithm. BONUS - Prim's algorithm
+    - manualWires(): [PREV addWires()] Generates hard-coded wires in the game board
+    - fractalWires(): [PREV wireAlgorithm()] Generates fractal-like wires in the game board
+    // TODO: Implement worldEnds() and display winning message.
+    // TODO: BONUS - If time permits, add sound and timer to the game
+
+2. GamePiece methods:
+    - powerGradient(): Chooses the color according to power.
+        // TODO: Only yellow and black available. Add distance-sensitive gradient
+    - powerDown(): to power down a GamePiece and update its distFromPower
+
+3. ExamplesLightEmAll:
+    // TODO: Add tests for new functions
+
+04/17/2019:
+3:16:20 PM
+Attempting to implement Kruskal's algorithm
+
+04/18/2019:
+2:56:45 AM
+Partially working Kruskal's algorithm.
+Only displaying horizontal lines. Graph is not connected.
+
+The following new methods have been added:
+1. LightEmAll:
+    - kruskalWires(): to generate an acyclic wire board using Kruskal's algorithm
+    - findRep(): to find the given GamePiece's deepest representative
+    - genEdges(): to generate all possible Edges with random weights
+
+CHANGES to functions:
+- Renamed addWires() to genWires()
+- Removed "RANDOM" mode from addWires()
+- Added "KRUSKAL" mode to addWires()
+
+6:04:23 PM
+Successfully implemented Kruskal's algorithm for random wire generation!
+
+NEW FILES
+    - Utils.java
+
+The following methods have been successfully added from previous versions:
+1. ExamplesLightEmAll:
+    - testInit(): to test the method that calls helpers to initialize the game
+    - testOnMouseClicked(): to test interaction with the mouse
+    - testOnKeyEvent(): to test interaction with the keyboard
+    - testConnectNeighbors(): to test method that establishes relationships between GamePieces
+    - testUpdateConnections(): to test method that updates connections after an operation
+    // TODO: Implement function to scramble board
+
+CHANGES to functions:
+- Added "EMPTY" mode to addWires() for testing.
+- Added powerDown() instruction to re-initialize LightEmAll.powered ArrayList when called.
+- Fixed genEdges() - call to mergeSort() was inside for loop, resulting in incomplete and
+incorrectly worklist items.
+- Fixed kruskalWires() - was incorrectly checking for representatives and adding cycles.
+
+The following new methods have been added:
+1. Utils:
+    - mergeSort(): to sort an ArrayList based on a given IComparator
+    - mergeSortHelp(): helper to sort an ArrayList based on a given IComparator
+    - merge(): helper to merge two sorted Objects or ArrayLists
+    - HeavierThan.class: Comparator to compare weights of two Edges
+    - HeavierThan.compare(): method to compare weights of two Edges
+    // TODO: Add tests for new functions
+
+2. ExamplesLightEmAll:
+    - testGenBoard(): to test method that generates the LightEmAll grid
+    - testGenWires(): to test method that chooses wire algorithm according to game mode
+    - testManualWires(): to test method that generates hard-coded wire patterns
+    - testGenEdges(): to test method that generates all possible Edges with random weights
+    - testFindRadius(): to test method that finds the effective radius of the powerStation
+    // TODO: Add tests for functions that have not been previously tested
+
+10:55:55 PM
+Implemented distance-sensitive power gradient.
+
+CHANGES to functions:
+- Added function to scramble board to kruskalWires()
+- Added more colors to powerGradient()
+
+// TODO: Add more tests for Kruskal & powerGradient()
